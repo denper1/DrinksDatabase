@@ -94,9 +94,9 @@ lemon_and_whiskey_cocktails_alternative_query = '''
     HAVING COUNT(DISTINCT i.ingredient_name) = 2
 '''
 
-# Check that the ingredients contain a version of "sambuca" and extract the numerical part from the grams
+# Check that the ingredients contain a version of "Sambuca" and extract the numerical part from the grams
 #   measurement (extract the string from the beginning to the third last character, thus excluding " g",
-#   cast it as float and check that it's at least 15 g).
+#   cast it as float and check that it's at most 15 g).
 sambuca_cocktails_query = """
 SELECT drink_name
 FROM drinks as d

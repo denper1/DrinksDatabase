@@ -1,0 +1,8 @@
+.idea
+*.pyc
+*.egg
+*egg-info
+.DS_Store
+.pytest_cache
+test/resources/.pytest_cache
+drinksdb

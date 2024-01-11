@@ -20,5 +20,5 @@ python script.py
 To clear the tables:
 
 ````
-make drop_tables
+make drop-tables
 ````
