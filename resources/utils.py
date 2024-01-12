@@ -1,10 +1,20 @@
+import logging
 from sqlite3 import Error, Cursor
 from string import ascii_lowercase
 from typing import List, Dict
 from pandas import DataFrame
 import requests
-import re
 from fractions import Fraction
+import logging
+
+
+def setup_logger(log_level: str = "INFO") -> logging.Logger:
+    log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    logging.basicConfig(format=log_format)
+    log = logging.getLogger("drinks")
+    log.setLevel(log_level)
+
+    return log
 
 
 def retrieve_drinks_list() -> List[List[Dict]]:
@@ -28,6 +38,7 @@ def handle_query(cursor: Cursor, query: str, parameters: List = None) -> Cursor:
     :param parameters: Values to be substituted to '?' in a parametrized query
     :return: cursor containing the executed query
     """
+    log = logging.getLogger("drinks")
     result = None
     try:
         if parameters:
@@ -35,8 +46,8 @@ def handle_query(cursor: Cursor, query: str, parameters: List = None) -> Cursor:
         else:
             result = cursor.execute(query)
     except Error as e:
-        print(f"Error executing query: {query}.")
-        print(e)
+        log.error(f"Error executing query: {query}.")
+        log.error(e)
     return result
 
 
